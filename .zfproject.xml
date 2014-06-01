@@ -28,6 +28,7 @@
           <dbTableFile dbTableName="Type"/>
           <dbTableFile dbTableName="User"/>
         </dbTableDirectory>
+        <modelFile modelName="User"/>
       </modelsDirectory>
       <modulesDirectory>
         <moduleDirectory moduleName="default">
