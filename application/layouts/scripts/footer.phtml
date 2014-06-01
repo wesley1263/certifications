@@ -1,0 +1,88 @@
+   </div>
+      </div>
+  
+  </body>
+</html>
+<?php 
+$script = <<<SCRIPT
+$(function () {
+
+       /* Bar Chart starts */
+
+       var d1 = [];
+       for (var i = 0; i <= 35; i += 1)
+           d1.push([i, parseInt(Math.random() * 30)]);
+
+       var d2 = [];
+       for (var i = 0; i <= 35; i += 1)
+           d2.push([i, parseInt(Math.random() * 30)]);
+
+
+       var stack = 0, bars = true, lines = false, steps = false;
+       
+       function plotWithOptions() {
+           $.plot($("#home-chart"), [ d1, d2 ], {
+               series: {
+                   stack: stack,
+                   lines: { show: lines, fill: true, steps: steps },
+                   bars: { show: bars, barWidth: 0.8 }
+               },
+               grid: {
+                   borderWidth: 0, hoverable: true, color: "#777"
+               },
+               colors: ["#16cbe6", "#0fa6bc"],
+               bars: {
+                     show: true,
+                     lineWidth: 0,
+                     fill: true,
+                     fillColor: { colors: [ { opacity: 0.9 }, { opacity: 0.8 } ] }
+               }
+           });
+       }
+
+       plotWithOptions();
+       
+       $(".stackControls input").click(function (e) {
+           e.preventDefault();
+           stack = $(this).val() == "With stacking" ? true : null;
+           plotWithOptions();
+       });
+       $(".graphControls input").click(function (e) {
+           e.preventDefault();
+           bars = $(this).val().indexOf("Bars") != -1;
+           lines = $(this).val().indexOf("Lines") != -1;
+           steps = $(this).val().indexOf("steps") != -1;
+           plotWithOptions();
+       });
+
+       /* Bar chart ends */
+
+   });
+SCRIPT;
+
+?>        
+        
+        <!-- FIles JS from skin -->
+        <?php $this->headScript()->appendFile('/skin/js/jquery.js')
+                                 ->appendFile('/skin/js/bootstrap.min.js')
+                                 ->appendFile('/skin/js/bootstrap-datetimepicker.min.js')
+                                 ->appendFile('/skin/js/bootstrap-switch.min.js')
+                                 ->appendFile('/skin/js/custom.js')
+                                 ->appendFile('/skin/js/fullcalendar.min.js')
+                                 ->appendFile('/skin/js/html5shiv.js')
+                                 ->appendFile('/skin/js/jquery.cleditor.min.js')
+                                 ->appendFile('/skin/js/jquery.flot.pie.js')
+                                 ->appendFile('/skin/js/jquery.flot.resize.js')
+                                 ->appendFile('/skin/js/jquery.flot.stack.js')
+                                 ->appendFile('/skin/js/jquery.gritter.min.js')
+                                 ->appendFile('/skin/js/jquery.prettyPhoto.js')
+                                 ->appendFile('/skin/js/jquery.rateit.min.js')
+                                 ->appendFile('/skin/js/jquery-ui-1.10.2.custom.min.js')
+                                 ->appendFile('/skin/js/peity.js')
+                                 ->appendFile('/skin/js/respond.min.js')
+                                 ->appendScript($script)
+        
+         ?>
+        <!-- FIles JS from skin -->
+        
+ <?php echo $this->headScript()?>
