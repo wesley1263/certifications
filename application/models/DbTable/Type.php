@@ -10,7 +10,7 @@ class Application_Model_DbTable_Type extends Zend_Db_Table_Abstract
     public function listAll()
     {
         try{
-            return $this->fetchAll();
+            return $this->fetchAll()->toArray();
         }catch(Zend_Exception $e){
             echo $e->getMessage();
         }

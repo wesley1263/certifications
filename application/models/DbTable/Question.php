@@ -9,7 +9,7 @@ class Application_Model_DbTable_Question extends Zend_Db_Table_Abstract
     public function listAll()
     {
         try{
-            return $this->fetchAll();
+            return $this->fetchAll()->toArray();
         }catch(Zend_Exception $e){
             echo $e->getMessage();
         }
@@ -18,7 +18,7 @@ class Application_Model_DbTable_Question extends Zend_Db_Table_Abstract
     public function listOnce($id)
     {
         try{
-            return $this->fetchRow($this->_primary.' = '.$id);
+            return $this->fetchRow($this->_primary.' = '.$id)->toArray();
         }catch(Zend_Exception $e){
             echo $e->getMessage();
         }

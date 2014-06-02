@@ -1,0 +1,88 @@
+<?php $this -> headTitle() -> append('Questions'); ?>
+<?=$this -> render('header.phtml') ?>
+<?php
+    foreach ($this->type as $value) {
+        $opt_type[$value['id_type']] = $value['title_type'];
+    }
+?>
+<div class="mainy">
+<div class="row"> 
+<div class="col-md-12">
+    <a href="/admin/question/new" class="btn btn-primary">New</a>
+<div class="awidget">
+    <h2><i class="icon-list color"></i> Questions </h2>
+	<div class="awidget-body">
+
+		<table class="table table-hover table-bordered ">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Type</th>
+					<th>Descriptions</th>
+					<th>Answer</th>
+					<th>Status</th>
+					<th>Control</th>
+				</tr>
+			</thead>
+			<tbody>
+                <?php foreach($this->listAll as $data): ?>
+				<tr>
+					<td><?=$data['id_questions']?></td>
+					<td><?=$opt_type[$data['id_type']]?></td>
+					<td><?=$data['description_question']?></td>
+					<td><?=$data['answer_question']?></td>
+					<td>
+					    <?php if($data['status_question'] == '1'): ?>
+					    <span class="label label-success">Enable</span>
+					    <?php else: ?>
+					    <span class="label label-danger">Disable</span>
+					    <?php endif; ?>
+					<td>
+					<!-- <button class="btn btn-xs btn-success">
+						<i class="icon-ok"></i>
+					</button> -->
+					<a href="/admin/question/new/id/<?=$data['id_questions']?>" class="btn btn-xs btn-warning">
+						<i class="icon-pencil"></i>
+					</a>
+					<a href="/admin/question/remove/id/<?=$data['id_questions'] ?>" onclick="return confirm('You want really remove this title?')" class="btn btn-xs btn-danger">
+						<i class="icon-remove"></i>
+					</a></td>
+				</tr>
+                <?php endforeach; ?>
+
+				
+
+			</tbody>
+		</table>
+
+		<ul class="pagination pull-right">
+			<li>
+				<a href="#">«</a>
+			</li>
+			<li>
+				<a href="#">1</a>
+			</li>
+			<li>
+				<a href="#">2</a>
+			</li>
+			<li>
+				<a href="#">3</a>
+			</li>
+			<li>
+				<a href="#">4</a>
+			</li>
+			<li>
+				<a href="#">5</a>
+			</li>
+			<li>
+				<a href="#">»</a>
+			</li>
+		</ul>
+
+		<div class="clearfix"></div>
+
+	</div>
+        </div>
+    </div>
+</div>
+</div>
