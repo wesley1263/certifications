@@ -1,4 +1,91 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Alternative</b> and script/action name <b>index</b></p>
+<?php $this -> headTitle() -> append('Alternatives'); ?>
+<?=$this -> render('header.phtml') ?>
+<?php 
+    foreach ($this->questions as $value) {
+        $opt_question[$value['id_questions']] = $value['id_questions'];
+    }
+
+?>
+<div class="mainy">
+<div class="row"> 
+<div class="col-md-12">
+    <a href="/admin/alternative/new" class="btn btn-primary">New</a>
+<div class="awidget">
+    <h2><i class="icon-list color"></i> Alternatives </h2>
+    <div class="awidget-body">
+
+        <table class="table table-hover table-bordered ">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Question</th>
+                    <th>Descriptions</th>
+                    <th>Option</th>
+                    <th>Form</th>
+                    <th>Status</th>
+                    <th>Control</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($this->listAll as $data): ?>
+                <tr>
+                    <td><?=$data['id_alternative']?></td>
+                    <td><?=$opt_question[$data['id_questions']]?></td>
+                    <td><?=$data['description_alternative']?></td>
+                    <td><?=$data['option_alternative']?></td>
+                    <td><?=$data['form_alternative']?></td>
+                    <td>
+                        <?php if($data['status_alternative'] == '1'): ?>
+                        <span class="label label-success">Enable</span>
+                        <?php else: ?>
+                        <span class="label label-danger">Disable</span>
+                        <?php endif; ?>
+                    <td>
+                    <!-- <button class="btn btn-xs btn-success">
+                        <i class="icon-ok"></i>
+                    </button> -->
+                    <a href="/admin/alternative/new/id/<?=$data['id_alternative']?>" class="btn btn-xs btn-warning">
+                        <i class="icon-pencil"></i>
+                    </a>
+                    <a href="/admin/alternative/remove/id/<?=$data['id_alternative'] ?>" onclick="return confirm('You want really remove this title?')" class="btn btn-xs btn-danger">
+                        <i class="icon-remove"></i>
+                    </a></td>
+                </tr>
+                <?php endforeach; ?>
+
+                
+
+            </tbody>
+        </table>
+
+        <ul class="pagination pull-right">
+            <li>
+                <a href="#">«</a>
+            </li>
+            <li>
+                <a href="#">1</a>
+            </li>
+            <li>
+                <a href="#">2</a>
+            </li>
+            <li>
+                <a href="#">3</a>
+            </li>
+            <li>
+                <a href="#">4</a>
+            </li>
+            <li>
+                <a href="#">5</a>
+            </li>
+            <li>
+                <a href="#">»</a>
+            </li>
+        </ul>
+
+        <div class="clearfix"></div>
+
+    </div>
+        </div>
+    </div>
+</div>
 </div>

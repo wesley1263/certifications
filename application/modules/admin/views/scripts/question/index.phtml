@@ -4,6 +4,10 @@
     foreach ($this->type as $value) {
         $opt_type[$value['id_type']] = $value['title_type'];
     }
+    
+    if($this->success){
+        echo '<div class="alert alert-success">'.$this->success[0].'</div>';
+    }
 ?>
 <div class="mainy">
 <div class="row"> 

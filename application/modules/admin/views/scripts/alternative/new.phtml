@@ -1,0 +1,75 @@
+<?php $this -> headTitle() -> append('Questions'); ?>
+<?=$this -> render('header.phtml') ?>
+
+<?php 
+$id = isset($this->listOnce['id_alternative']) ? $this->listOnce['id_alternative'] : null;
+
+?>
+<div class="mainy">
+<div class="row"> 
+<div class="col-md-12">
+    <a href="/admin/question" class="btn btn-primary">Back</a>
+<div class="awidget">
+    <h2><i class="icon-list color"></i> New Question </h2>
+    <div class="awidget-body">
+        
+        <div class="awidget-body">
+                              <form class="form-horizontal" role="form" action="/admin/alternative/new" method="post">
+                              <input type="hidden" name="id_alternative"  value="<?=$id?>"/>
+
+                            <?php foreach($this->questions as $value): ?>
+                             <?php $opt_question[$value['id_questions']] = $value['id_questions']; ?>
+                            <?php endforeach; ?>
+                                
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">Question</label>
+                                  <div class="col-lg-10">
+                                      <?=$this->select('id_questions',$opt_question,isset($this->listOnce['id_questions']) ? $this->listOnce['id_questions'] : null,'form-control');?>
+                                  </div>
+                                </div>     
+                                
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">Option</label>
+                                  <div class="col-lg-10">
+                                      <?=$this->select('option_alternative',array('A'=>'A','B'=>'B','C'=>'C','D'=>'D','E'=>'E','F'=>'F'),isset($this->listOnce['option_alternative']) ? $this->listOnce['option_alternative'] : 'A','form-control')?>
+                                  </div>
+                                </div>
+                                
+
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">Form</label>
+                                  <div class="col-lg-10">
+                                      <?=$this->select('form_alternative',array('checkbox'=>'CHECKBOX','radio'=>'RADIO'),isset($this->listOnce['form_alternative']) ? $this->listOnce['form_alternative'] : 'radio','form-control')?>
+                                  </div>
+                                </div>  
+                                
+                                
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">Status</label>
+                                  <div class="col-lg-10">
+                                      <?=$this->select('status_alternative',array('1'=>'Enable','0'=>'Disable'),isset($this->listOnce['status_alternative']) ? $this->listOnce['status_alternative'] : '1','form-control')?>
+                                  </div>
+                                </div>  
+
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">Description</label>
+                                  <div class="col-lg-10">
+                                    <textarea class="form-control" name="description_alternative" rows="3" placeholder="Textarea"><?=isset($this->listOnce['description_alternative']) ? $this->listOnce['description_alternative'] : null?></textarea>
+                                  </div>
+                                </div>    
+                                
+                                <div class="form-group">
+                                  <div class="col-lg-offset-2 col-lg-10">
+                                    <hr>
+                                    <button type="submit" class="btn btn-success btn-lg">Save</button>
+                                  </div>
+                                </div>
+                              </form>
+                           </div>
+
+
+    </div>
+        </div>
+    </div>
+</div>
+</div>
