@@ -10,7 +10,10 @@ class Application_Model_DbTable_Alternative extends Zend_Db_Table_Abstract
     public function listAll()
     {
         try{
-            return $this->fetchAll();
+            $select = $this->select()->order('id_questions');
+            $rs = $select->query();
+            return $rs->fetchAll();
+//            return $this->fetchAll();
         }catch(Zend_Exception $e){
             echo $e->getMessage();
         }

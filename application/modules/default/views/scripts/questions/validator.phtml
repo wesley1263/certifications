@@ -1,0 +1,54 @@
+<?= $this->render('header.phtml')?>
+<div class="mainy2">
+<h2>Result from alternatives Magento</h2>
+	<div class="row"> 
+		<div class="col-md-15">
+			<div class="awidget">
+		
+		
+		<center>
+		<?php if($this->porcentagem > 70):?>
+		<h1>Congratulations</h1>
+		<br>
+		<h2>Percentage: <?=$this->porcentagem?></h2>
+		<br>
+		<h2>Wrongs: <?=$this->errado?> | Rights: <?=$this->certo?></h2>
+		<?php else:?>
+		<h1>Try Again</h1>
+		<br>
+		<h2>Percentage: <?=$this->porcentagem?>%</h2>
+		<br>
+		<h2>Wrongs: <?=$this->errado?> | Rights: <?=$this->certo?></h2>
+		<table class="table table-bordered">
+		<thead>
+		<tr>
+			<th>Question</th>
+			<th>Answer</th>
+			<th>Right</th>
+		</tr>
+		</thead>
+		<?php foreach ($this->questoes as $array){ ?>
+			<?php foreach ($array as $key => $value): ?>
+				<tr>
+				<td><?=$key?></td>
+				<td><?=$value?></td>
+				<td><?=$this->alternativas['certas'][$key]?></td>
+				</tr>
+			<?php endforeach; ?>
+		<?php } ?>
+		</table>
+		<?php endif;?>
+		</center>
+		
+		<a href="/questions" class="btn btn-primary btn-lg">Back</a>
+			
+			
+			</div>
+		</div>
+	</div>
+</div>
+<style>
+.mainy2 {
+	margin: 3% 8%;
+}
+</style>

@@ -4,6 +4,7 @@
     foreach ($this->questions as $value) {
         $opt_question[$value['id_questions']] = $value['id_questions'];
     }
+    
 
 ?>
 <div class="mainy">
@@ -13,6 +14,11 @@
 <div class="awidget">
     <h2><i class="icon-list color"></i> Alternatives </h2>
     <div class="awidget-body">
+        <?php 
+         foreach ($this->success as $key => $value) {
+                echo '<div class="alert alert-success">'.$value.'</div>';
+            }
+        ?>
 
         <table class="table table-hover table-bordered ">
             <thead>
@@ -31,7 +37,7 @@
                 <tr>
                     <td><?=$data['id_alternative']?></td>
                     <td><?=$opt_question[$data['id_questions']]?></td>
-                    <td><?=$data['description_alternative']?></td>
+                    <td><?='<pre>'.htmlentities($data['description_alternative']).'</pre>'?></td>
                     <td><?=$data['option_alternative']?></td>
                     <td><?=$data['form_alternative']?></td>
                     <td>
@@ -58,29 +64,30 @@
             </tbody>
         </table>
 
-        <ul class="pagination pull-right">
-            <li>
-                <a href="#">«</a>
-            </li>
-            <li>
-                <a href="#">1</a>
-            </li>
-            <li>
-                <a href="#">2</a>
-            </li>
-            <li>
-                <a href="#">3</a>
-            </li>
-            <li>
-                <a href="#">4</a>
-            </li>
-            <li>
-                <a href="#">5</a>
-            </li>
-            <li>
-                <a href="#">»</a>
-            </li>
-        </ul>
+<!--        <ul class="pagination pull-right">-->
+<!--            <li>-->
+<!--                <a href="#">«</a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <a href="#">1</a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <a href="#">2</a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <a href="#">3</a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <a href="#">4</a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <a href="#">5</a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <a href="#">»</a>-->
+<!--            </li>-->
+<!--        </ul>-->
+<?=$this->listAll?>
 
         <div class="clearfix"></div>
 

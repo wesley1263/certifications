@@ -50,6 +50,18 @@ class Application_Model_DbTable_Question extends Zend_Db_Table_Abstract
             echo $e->getMessage();
         }
     }
+    
+    public function listLimit($num)
+    {
+    	try{
+    		$select = $this->select();
+    		$select->limit($num);
+    		$rs = $select->query();
+    		return $rs->fetchAll();
+    	}catch (Zend_Exception $e){
+    		echo $e->getMessage();
+    	}
+    }
 
 
 }
