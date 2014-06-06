@@ -9,7 +9,7 @@
 
 <input type="hidden" name="qtd_question" value="<?=count($this->questions)?>" />
 <?php foreach ($this->questions as $quest):?>
-<p><h3><?=$quest['description_question']?></h3></p>
+<p><strong><?=$quest['description_question']?></strong></p>
 <?php $cont = 0;?>
 <?php foreach ($this->alternatives as $alte){?>
 	<?php if($alte['id_questions'] == $quest['id_questions']):?>
