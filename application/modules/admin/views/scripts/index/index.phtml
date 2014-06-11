@@ -1,1 +1,104 @@
-<?=$this->render('header.phtml')?>
+<?php $this->headTitle()->append('Login For Admin') ?>
+
+
+ <!-- Logo & Navigation starts -->
+      
+      <div class="header">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <!-- Logo -->
+                  <div class="logo text-center">
+                     <h1><a href="index.html">Certifications Administrator</a></h1>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      
+      <!-- Logo & Navigation ends -->
+     
+<?php
+    if($this->error){
+        echo '<div class="alert alert-danger">'.$this->error[0].'</div>';
+    }
+?>
+      
+      <!-- Page content -->
+      
+      <div class="page-content blocky">
+         <div class="container">
+
+                  
+               
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="awidget login-reg">
+                           <div class="awidget-head">
+                           
+                           </div>
+                           <div class="awidget-body">
+                              <!-- Page title -->
+                              <div class="page-title text-center">
+                                 <h2>Login</h2>
+                                 <hr />
+                              </div>
+                              <!-- Page title -->
+                              
+                              <br />
+                              <form class="form-horizontal" role="form" action="/admin/index/" method="post">
+                                <div class="form-group">
+                                  <label for="inputEmail1" class="col-lg-2 control-label">Login</label>
+                                  <div class="col-lg-10">
+                                    <input type="text" class="form-control" name="login_user" id="login_user" placeholder="Login">
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label for="inputPassword1" class="col-lg-2 control-label">Password</label>
+                                  <div class="col-lg-10">
+                                    <input type="password" class="form-control" name="password_user" id="inputPassword1" placeholder="Password">
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <div class="col-lg-offset-2 col-lg-10">
+                                    <div class="checkbox">
+                                      <label>
+                                        <!-- <input type="checkbox"> Remember me -->
+                                      </label>
+                                    </div>
+                                  </div>
+                                </div>
+                                <hr />
+                                <div class="form-group">
+                                  <div class="col-lg-offset-2 col-lg-10">
+                                    <button type="submit" class="btn btn-info">Sign in</button>
+                                    <button type="reset" class="btn btn-default">Reset</button>
+                                  </div>
+                                </div>
+                              </form>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  
+            
+            
+         </div>
+      </div>
+     
+      
+      
+      <!-- Footer starts -->
+      <footer>
+         <div class="container">
+         
+            <div class="copy text-center">
+               Copyright 2014 &copy; - <a target="_blank" href="http://www.andwes.com.br">ANDWES SOLUTIONS</a>
+            </div>
+            
+         </div>
+      </footer>
+      <!-- Footer ends -->
+      
+      <!-- Scroll to top -->
+      <span class="totop"><a href="#"><i class="icon-chevron-up"></i></a></span>         
