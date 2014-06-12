@@ -14,7 +14,7 @@ class Default_QuestionsController extends Zend_Controller_Action
 
     public function indexAction()
     {
-    	$this->view->questions = $this->question->listLimit(10);
+    	$this->view->questions = $this->question->listLimit(20);
     	$this->view->alternatives = $this->alternative->listAll();
         // action body
     }
