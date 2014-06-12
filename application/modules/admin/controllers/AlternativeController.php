@@ -5,9 +5,16 @@ class Admin_AlternativeController extends Zend_Controller_Action
 
     public function init()
     {
-        /* Initialize action controller here */
+
+        $this->_auth = Zend_Auth::getInstance();
+        $this->view->session =  $this->_auth->getStorage()->read();
+        if(!$this->view->session){
+          $this->_redirect('/admin'); 
+        }
+        
         $this->model = new Application_Model_DbTable_Alternative();
         $this->question = new Application_Model_DbTable_Question();
+        
     }
 
     public function indexAction()

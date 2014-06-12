@@ -5,7 +5,12 @@ class Admin_IndexController extends Zend_Controller_Action
 
     public function init()
     {
-        /* Initialize action controller here */
+
+        $this->_auth = Zend_Auth::getInstance();
+        $this->view->session =  $this->_auth->getStorage()->read();
+        if(!$this->view->session){
+          $this->_redirect('/admin'); 
+        }
         $this->model = new Application_Model_DbTable_Question();
     }
 
@@ -44,13 +49,17 @@ class Admin_IndexController extends Zend_Controller_Action
             
             if($result->isValid()){
                 $info = $authAdapter->getResultRowObject(null,'password_user');
+                if($info->id_role != '1'){
+                    $info = null;
+                    $this->_redirect('/admin');
+                }
                 $storage = $auth->getStorage();
                 $storage->write($info);
-                return $this->_redirect('/admin');
+                return $this->_redirect('/admin/home');
                 
             }else{
                 $this->_helper->FlashMessenger->addMessage('User or Password invalid!','error');
-                $this->_redirect('/');
+                $this->_redirect('/admin');
             }
             
             }catch(Zend_Exception $e){

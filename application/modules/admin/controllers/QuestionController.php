@@ -5,6 +5,12 @@ class Admin_QuestionController extends Zend_Controller_Action
 
     public function init()
     {
+       $this->_auth = Zend_Auth::getInstance();
+       $this->view->session =  $this->_auth->getStorage()->read();
+       if(!$this->view->session){
+          $this->_redirect('/admin'); 
+       }
+        
         $this->model = new Application_Model_DbTable_Question();
         $this->type = new Application_Model_DbTable_Type();
         /* Initialize action controller here */
