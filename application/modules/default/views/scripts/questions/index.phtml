@@ -14,7 +14,15 @@
 <?php foreach ($this->alternatives as $alte){?>
 	<?php if($alte['id_questions'] == $quest['id_questions']):?>
 	<?php $arr =  $alte['form_alternative'] == 'radio' ? null : '[]'?>
-	<p><strong><?=$alte['option_alternative']?></strong> - <input type="<?=$alte['form_alternative']?>" name="<?=$quest['id_questions'].$arr?>" value="<?=$alte['option_alternative']?>"> <?=htmlentities($alte['description_alternative'])?></p>
+	<?php 
+	   
+	   if(preg_match('/^[<.,\$.]/',$alte['description_alternative'])){
+	       $questions = '<pre>'.htmlentities($alte['description_alternative']).'</pre>';
+	   }else{
+	       $questions = htmlentities($alte['description_alternative']);
+	   }
+	?>
+	<p><strong><?=$alte['option_alternative']?></strong> - <input type="<?=$alte['form_alternative']?>" name="<?=$quest['id_questions'].$arr?>" value="<?=$alte['option_alternative']?>"> <?=$questions?></p>
 	<?php endif;?>
 <?php }?>
 <br>

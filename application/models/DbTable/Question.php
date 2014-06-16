@@ -56,6 +56,7 @@ class Application_Model_DbTable_Question extends Zend_Db_Table_Abstract
     	try{
     		$select = $this->select();
     		$select->limit($num);
+                   // ->order('rand()');
     		$rs = $select->query();
     		return $rs->fetchAll();
     	}catch (Zend_Exception $e){
