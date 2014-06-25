@@ -1,4 +1,72 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Type</b> and script/action name <b>index</b></p>
+<?php $this -> headTitle() -> append('Type'); ?>
+<?=$this -> render('header.phtml') ?>
+
+<div class="mainy">
+<div class="row"> 
+<div class="col-md-12">
+    <?php
+    if($this->success){
+        echo '<div class="alert alert-success">'.$this->success[0].'</div>';
+    }
+    
+    if($this->error){
+        echo '<div class="alert alert-danger">'.$this->error[0].'</div>';
+    }
+?>
+    <a href="/admin/type/new" class="btn btn-primary">New</a>
+<div class="awidget">
+    <h2><i class="icon-list color"></i> Type </h2>
+    <div class="awidget-body">
+<?php 
+foreach ($this->language as $key => $value) {
+	$opt_language[$value['id_language']] = $value['title_language'];
+}
+
+?>
+        <table class="table table-hover table-bordered ">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Language</th>
+                    <th>Title</th>
+                    <th>Status</th>
+                    <th>Control</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($this->listAll as $data): ?>
+                <tr>
+                    <td><?=$data['id_type']?></td>
+                    <td><?=$opt_language[$data['id_language']]?></td>
+                    <td><?=$data['title_type']?></td>
+                    <td>
+                        <?php if($data['status_type'] == '1'): ?>
+                        <span class="label label-success">Enable</span>
+                        <?php else: ?>
+                        <span class="label label-danger">Disable</span>
+                        <?php endif; ?>
+                    <td>
+                    <!-- <button class="btn btn-xs btn-success">
+                        <i class="icon-ok"></i>
+                    </button> -->
+                    <a href="/admin/type/new/id/<?=$data['id_type']?>" class="btn btn-xs btn-warning">
+                        <i class="icon-pencil"></i>
+                    </a>
+                    <a href="/admin/type/remove/id/<?=$data['id_type'] ?>" onclick="return confirm('You want really remove this title?')" class="btn btn-xs btn-danger">
+                        <i class="icon-remove"></i>
+                    </a></td>
+                </tr>
+                <?php endforeach; ?>
+
+                
+
+            </tbody>
+        </table>
+
+        <div class="clearfix"></div>
+
+    </div>
+        </div>
+    </div>
+</div>
 </div>
