@@ -12,6 +12,11 @@
     if($this->error){
         echo '<div class="alert alert-danger">'.$this->error[0].'</div>';
     }
+    
+foreach ($this->role as $key => $value) {
+    $opt_role[$value['id_role']] = $value['title_role'];
+}
+
 ?>
     <a href="/admin/user/new" class="btn btn-primary">New</a>
 <div class="awidget">
@@ -34,7 +39,7 @@
                 <?php foreach($this->listAll as $data): ?>
                 <tr>
                     <td><?=$data['id_user']?></td>
-                    <td><?=$data['id_role']?></td>
+                    <td><?=$opt_role[$data['id_role']]?></td>
                     <td><?=$data['name_user']?></td>
                     <td><?=$data['login_user']?></td>
                     <td><?=$data['email_user']?></td>
