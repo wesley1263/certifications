@@ -7,6 +7,9 @@ class Default_QuestionsController extends Zend_Controller_Action
     {
         $this->_auth = Zend_Auth::getInstance();
         $this->view->session =  $this->_auth->getStorage()->read();
+        if(!$this->view->session){
+            $this->_redirect('/');
+        }
         
         $this->question = new Application_Model_DbTable_Question();
         $this->alternative = new Application_Model_DbTable_Alternative();
@@ -14,7 +17,7 @@ class Default_QuestionsController extends Zend_Controller_Action
 
     public function indexAction()
     {
-    	$this->view->questions = $this->question->listLimit(20);
+    	$this->view->questions = $this->question->listLimit(10);
     	$this->view->alternatives = $this->alternative->listAll();
         // action body
     }

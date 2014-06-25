@@ -1,0 +1,142 @@
+<?=$this->render('head.phtml')?>
+<div class="container">
+<center><h2>Robo de Criação de Formulários</h2></center>
+<br />
+<br />
+<?php 
+if(!$this->success == null){
+    echo '<div class="alert alert-success">'.$this->success[0].'</div>';
+}
+
+if(!$this->error == null){
+    echo '<div class="alert alert-danger">'.$this->error[0].'</div>';
+}
+
+ ########### Listar diretorios ###########
+         define('B',DIRECTORY_SEPARATOR);
+        $dir = glob(APPLICATION_PATH . B . 'modules/*', GLOB_ONLYDIR);
+        foreach ($dir as $key => $value) {
+            $value = explode('/', $value);
+            $value = end($value);
+            $directory[$value] = ucfirst($value);
+        }
+        ########### Listar diretorios ###########
+?>
+<form name="form_create" method="post" action="/robo/forms" class="form-horizontal" role="form">
+    
+    
+    <div class="form-group">
+            <label for="inputName" class="col-sm-2 control-label">Module</label>
+            <div class="col-sm-2">
+                <select class="form-control" name="module_forms">
+                 <?php foreach($directory as $key => $values):?>
+                      <option value="<?=$key?>"><?=$values?></option>
+                 <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
+    
+   	<div class="form-group">
+			<label for="inputName" class="col-sm-2 control-label">Name</label>
+			<div class="col-sm-6">
+				<input type="text" required="required" class="form-control" name="name_form" id="NameForm" placeholder="Name Form">
+			</div>
+		</div>
+    
+    
+        <div class="form-group">
+            <label for="inputName" class="col-sm-2 control-label">Action</label>
+            <div class="col-sm-6">
+                <input type="text" required="required" name="action_form" class="form-control" id="ActionForm" placeholder="Action Form">
+            </div>
+        </div>
+        
+        
+        <div class="form-group">
+            <label for="inputName" class="col-sm-2 control-label">Method</label>
+            <div class="col-sm-2">
+                <select class="form-control" name="method_form">
+                  <option value="post">POST</option>
+                  <option value="get">GET</option>
+                </select>
+            </div>
+        </div>
+        
+        <fieldset id="inputs_forms">
+            <div id="cloneDiv1" class="inputs">
+                <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Inputs</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control LabelInput" name="labelInput[]" id="LabelInput" placeholder="Label Input">
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" required="required" class="form-control NameInput" name="nameInput[]" id="NameInput" placeholder="Name Input">
+                    </div>
+                    <div class="col-sm-2">
+                        <select class="form-control typeInput" name="typeInput[]" id="typeInput">
+                          <option value="text">TEXT</option>
+                          <option value="select">SELECT</option>
+                          <option value="hidden">HIDDEN</option>
+                          <option value="textarea">TEXTAREA</option>
+                          <option value="radio">RADIO</option>
+                          <option value="checkbox">CHECKBOX</option>
+                          <option value="password">PASSWORD</option>
+                          <option value="submit">SUBMIT</option>
+                          <option value="button">BUTTON</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-1">
+                        <input type="checkbox" class="form-control RequiredInput" name="RequiredInput[]" id="RequiredInput" value="true"> Required
+                    </div>
+                </div>
+            </div> 
+            <center>
+                    <div class="col-sm-10">
+                        <button id="bt_insert" type="button" class="btn btn-success">+ Add</button>&nbsp;
+                        <button id="bt_remove" type="button" class="btn btn-danger">- Del</button>
+                    </div>
+            </center>
+        </fieldset>
+    
+    <br />
+    <br />
+    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+    <br />
+    <br />
+    
+</form>
+</div>
+<script>
+    jQuery(function(){
+       jQuery('#bt_insert').click(function(){
+           num = jQuery('.inputs').length;
+           newNum = new Number(num + 1); 
+           var newElem = jQuery('#cloneDiv'+num).clone().attr('id','cloneDiv'+newNum).fadeIn('slow');
+           
+           newElem.find('.LabelInput').attr('id','LabelInput'+newNum).val('');
+           newElem.find('.NameInput').attr('id','NameInput'+newNum).val('');
+           newElem.find('.typeInput').attr('id','typeInput'+newNum);
+           newElem.find('.RequiredInput').attr('id','RequiredInput'+newNum);
+           jQuery('#cloneDiv'+num).after(newElem);
+           jQuery('#bt_remove').attr('disabled',false);
+       });
+       
+       jQuery('#bt_remove').click(function(){
+                if(confirm('Deseja realmente remover esse Input ?')){
+                var num = jQuery('.inputs').length;
+                jQuery('#cloneDiv'+num).slideUp('slow',function(){
+                    jQuery('#cloneDiv'+num).remove();
+                    if(num - 1 === 1){
+                        jQuery('#bt_remove').attr('disabled',true);
+                    }else{
+                        jQuery('#bt_remove').attr('disabled',false);
+                        }
+                    });
+                }
+            });
+       
+       jQuery('#bt_remove').attr('disabled',true);
+    });
+</script>
+
+<?=$this->render('footer.phtml')?>

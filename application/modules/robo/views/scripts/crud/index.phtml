@@ -1,0 +1,21 @@
+<?=$this->render('head.phtml'); ?>
+<div class="container">
+<center><h2>Robo de Criação de Model Cruds</h2></center>
+<br />
+<br />
+<?php 
+if(!$this->success == null){
+    foreach ($this->success as $key => $value) {
+        echo '<p><div class="alert alert-success">'.$value.'</div></p>';
+    }
+}
+
+if(!$this->error == null){
+   foreach ($this->error as $key => $value) {
+        echo '<p><div class="alert alert-danger">'.$value.'</div></p>';
+    }
+}
+echo $this->form;
+?>
+</div>
+<?=$this->render('footer.phtml'); ?>

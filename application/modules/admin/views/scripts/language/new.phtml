@@ -1,0 +1,49 @@
+<?php $this -> headTitle() -> append('Language'); ?>
+<?=$this -> render('header.phtml') ?>
+<?php $data = $this->listOnce; ?>
+<div class="mainy">
+<div class="row"> 
+<div class="col-md-12">
+    <a href="/admin/language" class="btn btn-primary">Back</a>
+<div class="awidget">
+    <h2><i class="icon-list color"></i> New Language </h2>
+    <div class="awidget-body">
+        
+        <div class="awidget-body">
+                              <form class="form-horizontal" role="form" action="/admin/language/new" method="post">
+                              <input type="hidden" name="id_language" value="<?=isset($data['id_language']) ? $data['id_language'] : null ?>">
+                                
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">Title</label>
+                                  <div class="col-lg-10">
+                                    <input type="text" class="form-control" placeholder="Title Language" name="title_language" value="<?=isset($data['title_language']) ? $data['title_language'] : null ?>">
+                                  </div>
+                                </div>
+                                
+
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">Status</label>
+                                  <div class="col-lg-5">
+                                       <?=$this->select('status_language',array('1'=>'Enable','0'=>'Disable'),isset($data['status_language']) ? $data['status_language'] : 1,'form-control')?>
+                                  </div>
+                                </div>   
+
+                                
+                                <div class="form-group">
+                                  <div class="col-lg-offset-2 col-lg-10">
+                                    <hr>
+                                    <button type="submit" class="btn btn-success btn-lg">Save</button>
+                                  </div>
+                                </div>
+                              </form>
+                           </div>
+
+
+    </div>
+        </div>
+    </div>
+</div>
+</div>
+<?php
+Zend_Debug::dump($data);
+ ?>

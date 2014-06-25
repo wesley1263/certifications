@@ -1,11 +1,11 @@
-<?php
+        
+        <?php
 
-class Application_Model_DbTable_Language extends Zend_Db_Table_Abstract
+class Application_Model_DbTable_ extends Zend_Db_Table_Abstract
 {
 
-    protected $_name = 'tbl_language';
-    protected $_primary = 'id_language';
-    
+    protected $_name = '';
+    protected $_primary = '';
     
     public function listAll()
     {
@@ -37,11 +37,12 @@ class Application_Model_DbTable_Language extends Zend_Db_Table_Abstract
     public function alter(array $data)
     {
         try{
-            return $this->update($data,$this->_primary.' = '.$data['id_language']);
+            return $this->update($data,$this->_primary.' = '.$data['']);
         }catch(Zend_Exception $e){
             echo $e->getMessage();
         }
     }
+    
     
     public function remove($id)
     {
@@ -51,15 +52,6 @@ class Application_Model_DbTable_Language extends Zend_Db_Table_Abstract
             echo $e->getMessage();
         }
     }
-    
-    public function verify($data)
-    {
-        $select = $this->select();
-        $select->where("title_language = '".$data['title_language']."'");
-        $rs = $select->query();
-        return $rs->fetchAll();     
-    }
 
 
 }
-

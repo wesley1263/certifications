@@ -1,0 +1,18 @@
+<?=$this->render('head.phtml')?>
+<center><h2>Robo de Criação</h2></center>
+<?php
+if($this->success){
+    foreach ($this->success as $key => $value) {
+        echo '<p><div class="alert alert-success">'.$value.'</div></p>';
+    }
+}
+
+if($this->error){
+    foreach ($this->error as $key => $value) {
+        echo '<p><div class="alert alert-danger">'.$value.'</div></p>';
+    }
+}
+?>
+<?=$this->form?>
+
+<?=$this->render('footer.phtml')?>
