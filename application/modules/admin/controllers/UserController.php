@@ -46,6 +46,9 @@ class Admin_UserController extends Zend_Controller_Action
                     $this->_redirect('/admin/user');
                 }
             }else{
+                if($data['password_user'] == null){
+                   unset($data['password_user']);
+                }
                 if($this->model->alter($data)){
                         $this->_helper->FlashMessenger->addMessage('Data successfully updated.','success');
                         $this->_redirect('/admin/user');
