@@ -50,6 +50,14 @@ class Application_Model_DbTable_Role extends Zend_Db_Table_Abstract
             echo $e->getMessage();
         }
     }
+    
+    public function verify($data)
+    {
+        $select = $this->select();
+        $select->where("title_role = '".$data['title_role']."'");
+        $rs = $select->query();
+        return $rs->fetchAll();
+    }
 
 
 }

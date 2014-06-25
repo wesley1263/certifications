@@ -1,0 +1,84 @@
+<?php $this -> headTitle() -> append('User'); ?>
+<?=$this -> render('header.phtml') ?>
+<?php $data = $this->listOnce; ?>
+<?php 
+foreach ($this->role as $key => $value) {
+	$opt_role[$value['id_role']] = $value['title_role'];
+}
+
+?>
+<div class="mainy">
+<div class="row"> 
+<div class="col-md-12">
+    <a href="/admin/user" class="btn btn-primary">Back</a>
+<div class="awidget">
+    <h2><i class="icon-list color"></i> New User </h2>
+    <div class="awidget-body">
+        
+        <div class="awidget-body">
+                              <form class="form-horizontal" role="form" action="/admin/user/new" method="post">
+                              <input type="hidden" name="id_user" value="<?=isset($data['id_user']) ? $data['id_user'] : null ?>">
+                                
+                                
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">Role</label>
+                                  <div class="col-lg-5">
+                                       <?=$this->select('id_role',$opt_role,isset($data['id_role']) ? $data['id_role'] : 1,'form-control')?>
+                                  </div>
+                                </div> 
+                                
+                                
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">Name</label>
+                                  <div class="col-lg-9">
+                                    <input type="text" class="form-control" placeholder="Name User" name="name_user" value="<?=isset($data['name_user']) ? $data['name_user'] : null ?>">
+                                  </div>
+                                </div>
+                                
+                                
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">Login</label>
+                                  <div class="col-lg-9">
+                                    <input type="text" class="form-control" placeholder="Login User" name="login_user" value="<?=isset($data['login_user']) ? $data['login_user'] : null ?>">
+                                  </div>
+                                </div>
+                                
+                                
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">Email</label>
+                                  <div class="col-lg-9">
+                                    <input type="text" class="form-control" placeholder="Email User" name="email_user" value="<?=isset($data['email_user']) ? $data['email_user'] : null ?>">
+                                  </div>
+                                </div>
+                                
+                                
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">Password</label>
+                                  <div class="col-lg-5">
+                                    <input type="password" class="form-control" placeholder="Password User" name="password_user" value="">
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">Status</label>
+                                  <div class="col-lg-5">
+                                       <?=$this->select('status_user',array('1'=>'Enable','0'=>'Disable'),isset($data['status_user']) ? $data['status_user'] : 1,'form-control')?>
+                                  </div>
+                                </div>   
+
+                                
+                                <div class="form-group">
+                                  <div class="col-lg-offset-2 col-lg-10">
+                                    <hr>
+                                    <button type="submit" class="btn btn-success btn-lg">Save</button>
+                                  </div>
+                                </div>
+                              </form>
+                           </div>
+
+
+    </div>
+        </div>
+    </div>
+</div>
+</div>

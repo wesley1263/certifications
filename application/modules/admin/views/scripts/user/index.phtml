@@ -1,4 +1,71 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>User</b> and script/action name <b>index</b></p>
+<?php $this -> headTitle() -> append('User'); ?>
+<?=$this -> render('header.phtml') ?>
+
+<div class="mainy">
+<div class="row"> 
+<div class="col-md-12">
+    <?php
+    if($this->success){
+        echo '<div class="alert alert-success">'.$this->success[0].'</div>';
+    }
+    
+    if($this->error){
+        echo '<div class="alert alert-danger">'.$this->error[0].'</div>';
+    }
+?>
+    <a href="/admin/user/new" class="btn btn-primary">New</a>
+<div class="awidget">
+    <h2><i class="icon-list color"></i> User </h2>
+    <div class="awidget-body">
+
+        <table class="table table-hover table-bordered ">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Role</th>
+                    <th>Name</th>
+                    <th>Login</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>Control</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($this->listAll as $data): ?>
+                <tr>
+                    <td><?=$data['id_user']?></td>
+                    <td><?=$data['id_role']?></td>
+                    <td><?=$data['name_user']?></td>
+                    <td><?=$data['login_user']?></td>
+                    <td><?=$data['email_user']?></td>
+                    <td>
+                        <?php if($data['status_user'] == '1'): ?>
+                        <span class="label label-success">Enable</span>
+                        <?php else: ?>
+                        <span class="label label-danger">Disable</span>
+                        <?php endif; ?>
+                    <td>
+                    <!-- <button class="btn btn-xs btn-success">
+                        <i class="icon-ok"></i>
+                    </button> -->
+                    <a href="/admin/user/new/id/<?=$data['id_user']?>" class="btn btn-xs btn-warning">
+                        <i class="icon-pencil"></i>
+                    </a>
+                    <a href="/admin/user/remove/id/<?=$data['id_user'] ?>" onclick="return confirm('You want really remove this user?')" class="btn btn-xs btn-danger">
+                        <i class="icon-remove"></i>
+                    </a></td>
+                </tr>
+                <?php endforeach; ?>
+
+                
+
+            </tbody>
+        </table>
+
+        <div class="clearfix"></div>
+
+    </div>
+        </div>
+    </div>
+</div>
 </div>

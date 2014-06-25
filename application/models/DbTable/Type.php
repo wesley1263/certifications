@@ -51,6 +51,15 @@ class Application_Model_DbTable_Type extends Zend_Db_Table_Abstract
             echo $e->getMessage();
         }
     }
+    
+    
+    public function verify($data)
+    {
+        $select = $this->select();
+        $select->where("title_type = '".$data['id_type']."'");
+        $rs = $select->query();
+        return $rs->fetchAll();
+    }
 
 
 }

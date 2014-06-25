@@ -51,7 +51,14 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
             echo $e->getMessage();
         }
     }
-
+    
+    public function verify($data)
+    {
+        $select = $this->select();
+        $select->where("login_user = '".$data['login_user']."'");
+        $rs = $select->query();
+        return $rs->fetchAll();
+    }
 
 }
 

@@ -10,6 +10,48 @@
     <div class="awidget-body">
         
         <div class="awidget-body">
+            <?php 
+foreach ($this->language as $key => $value) {
+    $opt_language[$value['id_language']] = $value['title_language'];
+}
+$data = $this->listOnce;
+?>
+            
+            <form class="form-horizontal" role="form" action="/admin/type/new" method="post">
+                              <input type="hidden" name="id_type" value="<?=isset($data['id_type']) ? $data['id_type'] : null?>">
+                                
+                                
+                                
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">Title</label>
+                                  <div class="col-lg-10">
+                                    <input type="text" class="form-control" placeholder="Title Type" name="title_type" value="<?=isset($data['title_type']) ? $data['title_type'] : null?>">
+                                  </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">Language</label>
+                                  <div class="col-lg-5">
+                                      <?php echo $this->select('id_language',$opt_language, isset($data['id_language']) ? $data['id_language'] : 1, 'form-control') ?>
+                                   </div>
+                                </div> 
+
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">Status</label>
+                                  <div class="col-lg-5">
+                                      <?php echo $this->select('status_type',array('1'=>'Enable','0'=>'Disable'), isset($data['status_type']) ? $data['status_type'] : 1, 'form-control') ?>
+                                   </div>
+                                </div>   
+
+                                
+                                <div class="form-group">
+                                  <div class="col-lg-offset-2 col-lg-10">
+                                    <hr>
+                                    <button type="submit" class="btn btn-success btn-lg">Save</button>
+                                  </div>
+                                </div>
+                              </form>
+            
             
 
 </div>
