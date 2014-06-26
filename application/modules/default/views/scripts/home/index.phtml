@@ -1,11 +1,43 @@
+<?php $this->headTitle()->append('Home')?>
 <?= $this->render('header.phtml')?>
-<div class="mainy2">
+<div class="navbar-collapse collapse">
+	<form class="navbar-form navbar-right" role="form" action="/questions">
+                    <div class="form-group">
+                          <select name="type_questions" class="form-control">
+                             <option value="">PLEASE SELECT</option>
+                             <?php foreach ($this->type as $value): 
+                                if($value['status_type'] != '0'):
+                                 ?>
+                             <option value="<?=$value['id_type']?>"><?=$value['title_type']?></option>
+                             <?php 
+                                endif;
+                             endforeach; ?>
+                          </select>
+                    </div>
+                    
+                    <div class="form-group">
+                          <select name="radom_questions" class="form-control">
+                              <option value="0">NORMAL</option>
+                              <option value="1">RANDOM</option>
+                          </select>
+                   </div>
+                    
+                    <div class="form-group">
+                        <input type="text" name="number_questions" class="form-control" id="numberQuestions" placeholder="Number Questions">
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        Submit
+                    </button>
+                </form>
+</div>
+<div class="mainy">
 <h2>Simulation for Certification</h2>
     <div class="row"> 
-        <div class="col-md-15">
+        <div class="col-md-10">
             <div class="awidget">
               
-              
+             
+
               
                 
 </div>

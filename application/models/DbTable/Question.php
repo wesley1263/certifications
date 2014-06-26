@@ -63,6 +63,23 @@ class Application_Model_DbTable_Question extends Zend_Db_Table_Abstract
     		echo $e->getMessage();
     	}
     }
+    
+    
+    public function listQuestions($num,$type, $random = 0)
+        {
+        try{
+            $select = $this->select();
+            $select->where('id_type = '.$type);
+            $select->limit($num);
+            if($random == 1){
+               $select->order('rand()');
+            }
+            $rs = $select->query();
+            return $rs->fetchAll();
+        }catch (Zend_Exception $e){
+            echo $e->getMessage();
+        }
+    }
 
 
 }

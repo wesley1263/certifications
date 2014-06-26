@@ -8,10 +8,13 @@ class Default_HomeController extends Zend_Controller_Action {
         if(!$this->view->session){
             $this->_redirect('/');
         }
+        
+        $this->question = new Application_Model_DbTable_Question();
+        $this->type = new Application_Model_DbTable_Type();
     }
     
     public function indexAction()
     {
-        
+        $this->view->type = $this->type->listAll();
     }
 }
