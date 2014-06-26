@@ -44,6 +44,12 @@ class Default_IndexController extends Zend_Controller_Action
                 $info = $authAdapter->getResultRowObject(null,'password_user');
                 $storage = $auth->getStorage();
                 $storage->write($info);
+                $status = $info->status_user;
+                if($status == '0'){
+                    $this->_helper->FlashMessenger->addMessage('This user has been disabled please contact your administrator!','error');
+                    $this->logoutAction();
+                }
+                
                 return $this->_redirect('/home');
                 
             }else{
@@ -60,7 +66,6 @@ class Default_IndexController extends Zend_Controller_Action
     
     public function logoutAction()
     {
-        echo 'teste';
         $auth = Zend_Auth::getInstance();
         $auth->clearIdentity();
         $this->_redirect('/');
