@@ -44,7 +44,7 @@ class Default_IndexController extends Zend_Controller_Action
                 $info = $authAdapter->getResultRowObject(null,'password_user');
                 $storage = $auth->getStorage();
                 $storage->write($info);
-                return $this->_redirect('/questions');
+                return $this->_redirect('/home');
                 
             }else{
                 $this->_helper->FlashMessenger->addMessage('User or Password invalid!','error');
